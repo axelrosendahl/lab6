@@ -32,4 +32,4 @@ package lab6;
 		public int getPrice() {
 			return price;
 		}
-	}}
+	}
