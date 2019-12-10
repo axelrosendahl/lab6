@@ -10,13 +10,15 @@ public class Menu implements MenuItem {
 
 		System.out.println("Välkommen till  ett konsolbaserat menysystem!");
 		System.out.println("=============================================");
-		int result = 0;
+		
+		
 		Menu testMenu = new Menu("Testmeny");
 		testMenu.add(new AbstractMenuItem("Tillbaka") {
 			public void execute() { }});
 		testMenu.add(new AbstractMenuItem("Skriv ut hej") {
 			public void execute() { System.out.println("Hej!!"); }});
 		testMenu.add(testMenu);
+		
 		
 		Menu mainMenu = new Menu("Huvudmeny");
 		Menu addItem = new Menu("Lägg till vara");
@@ -31,7 +33,7 @@ public class Menu implements MenuItem {
 			}
 		});
 		
-		mainMenu.add(new AbstractMenuItem("Shopping List"){  
+		mainMenu.add(new AbstractMenuItem("Inhandlingslista"){  
 	   	
 			public void execute() {
 	   			shoppingLista.execute();
@@ -47,7 +49,12 @@ public class Menu implements MenuItem {
    			}
    		});
 		
-		shoppingLista.add(new AbstractMenuItem(""){		//Kopiera denna för alla items vi ska ha, vad för meny?
+		shoppingLista.add(new AbstractMenuItem("Bok"){		//Kopiera denna för alla items vi ska ha, vad för meny?
+   			public void execute() {
+   				mainMenu.execute();
+   			}
+   		});
+		shoppingLista.add(new AbstractMenuItem("Film"){		//Kopiera denna för alla items vi ska ha, vad för meny?
    			public void execute() {
    				mainMenu.execute();
    			}
@@ -115,7 +122,17 @@ public class Menu implements MenuItem {
 	*/
 	public void execute() {			// Vet inte hur den ska se ut :( 
 		int index = 0;
+		MenuItem toRun ;
+		System.out.println(getTitle());
+		System.out.println("=======");
 		//list.get(index).excute();
-		
+		for(MenuItem item : items) {
+			if(item.getTitle().equals(this.getTitle())) {
+				toRun = item;
+			}
+			System.out.println(index + "."+ item.getTitle());
+			index++;
+		}
+		index ++;
 	}
 }
