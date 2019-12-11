@@ -39,6 +39,7 @@ public class Menu implements MenuItem {
 
 		mainMenu.add(new AbstractMenuItem("Inhandlingslista") {
 			public void execute() {
+				getBooks();
 				shoppingLista.execute();
 			}
 		});
@@ -49,12 +50,12 @@ public class Menu implements MenuItem {
 			}
 		});
 
-		shoppingLista.add(new AbstractMenuItem("Bok") { // Kopiera denna för alla items vi ska ha, vad för meny?
+		shoppingLista.add(new AbstractMenuItem("Böcker i korgen") { // Kopiera denna för alla items vi ska ha, vad för meny?
 			public void execute() {
 				mainMenu.execute();
 			}
 		});
-		shoppingLista.add(new AbstractMenuItem("Film") { // Kopiera denna för alla items vi ska ha, vad för meny?
+		shoppingLista.add(new AbstractMenuItem("Filmer i korgen") { // Kopiera denna för alla items vi ska ha, vad för meny?
 			public void execute() {
 				mainMenu.execute();
 			}
@@ -65,13 +66,101 @@ public class Menu implements MenuItem {
 				addItem.execute();
 			}
 		});
+
+//		addItem.add(new AbstractMenuItem("Föfattare") {
+//				public void execute() {
+//					addItem.execute();
+//				}
+//				});
+//		addItem.add(new AbstractMenuItem("Bok") {
+//			public void execute() {
+//
+//				addItem.execute();
+//
+//			}
+//		});
+	
+
+		addItem.add(new AbstractMenuItem("Tillbaka") {
+			public void execute() {
+				mainMenu.execute();
+			}
+		});
+		
+		addItem.add(new AbstractMenuItem("Film") {
+			public void execute() {
+				Scanner input = new Scanner(System.in);
+				int length=0;
+				String director=null;
+				int price=0;
+				String name = null;
+				Movie movie = new Movie(director, length, name, price);
+				System.out.println("Namn");
+				name = input.nextLine();
+				movie.setName(name);
+				
+				System.out.println("Regissör");
+				director=input.nextLine();
+				movie.setDirector(director);
+				
+				System.out.println("Längd (minuter)");
+				length=input.nextInt();
+				movie.setLength(length);
+				
+				System.out.println("Pris");
+				price=input.nextInt();
+				movie.setPrice(price);
+				addItem.execute();
+				
+						
+				
+			}
+		});
+
 //		mainMenu.execute();
 //		shoppingLista.execute();
 //		addItem.execute();
+
+		addItem.add(new AbstractMenuItem("Bok") {
+			public void execute() {
+				Scanner input = new Scanner(System.in);
+				String author = null;
+				int pages = 0;
+				String name = null;
+				int price = 0;
+				Book book = new Book(author, pages, name, price);
+//				LinkedList<DataObject> objects = new LinkedList<DataObject>();
+
+				System.out.print("Namn: ");
+				name = input.nextLine();
+				book.setName(name);
+				System.out.print("Författare: ");
+				book.setAuthor(author);
+				author = input.nextLine();
+				System.out.print("Antal sidor: ");
+				pages = input.nextInt();
+				book.setPages(pages);
+				System.out.print("Pris: ");
+				price = input.nextInt();
+				book.setPrice(price);
+
+				Book.addBook(book);
+				addItem.execute();
+
+			}
+
+		});
+		mainMenu.execute();
+		shoppingLista.execute();
+		addItem.execute();
+		
 	}
+	
 
 	
 	
+//	objects.add new Book(author, pages, name, price);
+
 	/**
 	 * Skapar en tom meny med den givna rubriken.
 	 */
@@ -105,6 +194,7 @@ public class Menu implements MenuItem {
 	 * menyval exekveras. (3) Om menyval 0 valts så returnerar metoden. 0 motsvarar
 	 * alltså alltid av avsluta/tillbaka/återgå. (4) gå till (1)
 	 */
+
 	public void execute() {
 		Scanner input = new Scanner(System.in);
 		int index = 0;
@@ -112,17 +202,14 @@ public class Menu implements MenuItem {
 		System.out.println(getTitle());
 		System.out.println("=======");
 		for (MenuItem item : items) {
-//			if(item.getTitle().equals(this.getTitle()))
-
 			System.out.println(index + "." + item.getTitle());
 			index++;
-			
+			System.out.println();
 		}
 		System.out.println("Välj meny...");
 		int selection = input.nextInt();
-		toRun =items.get(selection);
+		toRun = items.get(selection);
 		toRun.execute();
-		
 
 	}
 

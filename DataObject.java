@@ -15,12 +15,12 @@ package lab6;
 			
 		}
 
-		private void setName(String name) {
+		void setName(String name) {
 			// TODO Auto-generated method stub
 			this.name=name;
 		}
 
-		private void setPrice(int price) {
+		 void setPrice(int price) {
 			// TODO Auto-generated method stub
 			this.price=price;
 			

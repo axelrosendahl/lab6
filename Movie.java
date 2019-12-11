@@ -7,7 +7,13 @@ public class Movie extends DataObject {
 	protected String director;
 	protected int length;
 
-
+	public Movie(String director, int length, String name, int price) {
+		super();
+		this.director = director;
+		this.length = length;
+		this.name = name;
+		this.price = price;
+	}
 	public String getDirector() {
 		return director;
 	}
@@ -27,11 +33,7 @@ public class Movie extends DataObject {
 	public void addMovie(Movie m) {
 		movies.add(m);
 	}
-	public void Book(String director, int length, String name, int price) {
-		this.director = director;
-		this.length = length;
-		this.name = name;
-		this.price = price;
-	}
+
+	
 
 }

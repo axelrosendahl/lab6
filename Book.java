@@ -8,10 +8,19 @@ public class Book extends DataObject {
 	protected int pages;
 
 	public Book(String author, int pages, String name, int price) {
+		super();
 		this.author = author;
 		this.pages = pages;
 		this.name = name;
 		this.price = price;
+	}
+
+	public static LinkedList<DataObject> getBooks() {
+		return books;
+	}
+
+	public static void setBooks(LinkedList<DataObject> books) {
+		Book.books = books;
 	}
 
 	public static void addBook(Book b) {
@@ -33,4 +42,11 @@ public class Book extends DataObject {
 	public void setPages(int pages) {
 		this.pages = pages;
 	}
+//	public void getPrice(int price) {
+//		this.price=price;
+//	}
+//	public void getName(String name) {
+//		this.name=name;
+//	}
 }
+
